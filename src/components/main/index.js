@@ -87,10 +87,19 @@ class Main extends Component {
 
     failureView = () => (
         <div>
-            <h1>City Not Found</h1>
+            <h1 className="failure">City Not Found</h1>
         </div>
     );
-    LoadingView = () => <div className="spin"></div>;
+    LoadingView = () => (
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    );
     data = () => {
         const { status } = this.state;
 
@@ -116,44 +125,44 @@ class Main extends Component {
         const hour = dateTime.getHours();
         const minute = dateTime.getMinutes();
 
-        const climateMode = mode ? "dark" : "light";
+        const climateMode = !mode ? "dark" : "light";
 
         return (
             <div className={`${climateMode} main`}>
                 <header>
-                    <div>
-                        {" "}
-                        <p>
+                    <h1 className="head">Weather App</h1>
+                    <div className="wet-con">
+                        <div>
                             {" "}
-                            <FaClock className="i" /> {hour} : {minute}
-                        </p>
-                    </div>
-                    <div>
-                        <p>
-                            {" "}
-                            {day}-{month}-{year}
-                        </p>
-                    </div>
-                    <div>
-                        <button onClick={this.changeMode} className="mode-btn">
-                            {" "}
-                            <RiMoonFill
-                                fontSize={35}
-                                color={!mode ? "#fff" : "#000"}
-                            />
-                        </button>
+                            <p>
+                                {" "}
+                                <FaClock className="i" /> {hour} : {minute}
+                            </p>
+                        </div>
+                        <div>
+                            <p>
+                                {" "}
+                                {day}-{month}-{year}
+                            </p>
+                        </div>
+                        <div>
+                            <button
+                                onClick={this.changeMode}
+                                className="mode-btn">
+                                {" "}
+                                <RiMoonFill fontSize={35} color="#fff" />
+                            </button>
+                        </div>{" "}
                     </div>
                 </header>
-                <div className="data">
-                    <div>
-                        {" "}
-                        <input onChange={this.changeInput} value={city} />
-                        <button className="button" onClick={this.searchValue}>
-                            Search
-                        </button>
-                    </div>{" "}
-                    {this.data()}
+                <div>
+                    {" "}
+                    <input onChange={this.changeInput} value={city} />
+                    <button className="btn" onClick={this.searchValue}>
+                        Search
+                    </button>
                 </div>
+                <div className="data"> {this.data()}</div>
             </div>
         );
     }
