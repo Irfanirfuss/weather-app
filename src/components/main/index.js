@@ -157,7 +157,11 @@ class Main extends Component {
                 </header>
                 <div>
                     {" "}
-                    <input onChange={this.changeInput} value={city} />
+                    <input
+                        onChange={this.changeInput}
+                        value={city}
+                        placeholder="Enter city"
+                    />
                     <button className="btn" onClick={this.searchValue}>
                         Search
                     </button>
